@@ -1,12 +1,7 @@
 name: Coveralls GitHub Action
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
   test:
@@ -17,10 +12,7 @@ jobs:
         node-version: [10.x, 12.x, 14.x, 15.x]
 
     steps:
-      - name: install packages
-        # uses: coverallsapp/github-action@1.1.3
-        run: npm install
-      - name: code coverage reqport
-        run: npm cover
-        with:
-          github-token: ${{ secrets.github_token }}
+      name: Coveralls GitHub Action
+      uses: coverallsapp/github-action@1.1.3
+      with:
+        github-token: ${{ secrets.github_token }}
