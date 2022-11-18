@@ -1,10 +1,15 @@
 {
   "scripts": {
-    "test": "node ./node_modules/mocha/bin/mocha",
-    "cover": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
+    "pre-cover": "rm -rf ./coverage | rm -rf ./lib-cov | mkdir coverage",
+    "jscover": "node ./node_modules/.bin/jscover lib lib-cov",
+    "test": "nyc mocha test -R mocha-lcov-reporter",
+    "coveralls": "nyc coveralls",
+    "cover": "npm run pre-cover | nyc npm test && nyc report --reporter=text-lcov > ./coverage/lcov.info | nyc npm coveralls",
+    "cover2": "npm run pre-cover | npm run jscover | nyc npm test && nyc report --reporter=text-lcov > coverage/lcov.info | nyc npm coveralls"
   },
   "devDependencies": {
     "coveralls": "^3.1.1",
+    "jscover": "^1.0.0",
     "mocha": "^10.1.0",
     "mocha-lcov-reporter": "^1.3.0",
     "nyc": "^15.1.0"
