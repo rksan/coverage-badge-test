@@ -1,10 +1,11 @@
+logs
+*.logs
 
 # Coverage directory used by tools like istanbul
+.nyc_output
+lib-cov
 coverage
 *.lcov
-
-# nyc test coverage
-.nyc_output
 
 # Dependency directories
 node_modules/

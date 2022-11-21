@@ -12,7 +12,12 @@ jobs:
         node-version: [15.x, 16.x]
 
     steps:
-      - run: npm install
+      - uses: actions/setup-node@v3
+        id: setup_node_id
+        with:
+          cache: npm
+      - if: ${{ steps.setup_node_id.outputs.cache-hit != 'true' }}
+        run: npm install
       - run: npm coverage-github-action
       - name: Coveralls GitHub Action
         uses: coverallsapp/github-action@1.1.3
