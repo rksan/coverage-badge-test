@@ -3,9 +3,8 @@
     "rm-dir": "rm -rf coverage | rm -rf .nyc_output",
     "mk-dir": "mkdir coverage",
     "test": "nyc mocha -R spec",
-    "precoverage-report": "npm run rm-dir",
     "coverage-report": "npm run test && nyc report --reporter=text-lcov",
-    "coverage-github-action": "npm run coverage-report"
+    "coverage-github-action": "npm run rm-dir && npm run mk-dir && npm run test && nyc report --reporter=text-lcov > ./coverage/lcov.info"
   },
   "devDependencies": {
     "chai": "^4.3.7",
