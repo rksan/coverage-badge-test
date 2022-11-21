@@ -5,18 +5,20 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     strategy:
       matrix:
         node-version: [15.x, 16.x]
 
     steps:
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
         id: setup_node_id
         with:
-          node-version: 16.14.2
-          cache: npm
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
       - if: ${{ steps.setup_node_id.outputs.cache-hit != 'true' }}
         run: npm install
       - run: npm coverage-github-action
