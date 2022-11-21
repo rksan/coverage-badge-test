@@ -15,6 +15,7 @@ jobs:
       - uses: actions/setup-node@v3
         id: setup_node_id
         with:
+          node-version: 16.14.2
           cache: npm
       - if: ${{ steps.setup_node_id.outputs.cache-hit != 'true' }}
         run: npm install
