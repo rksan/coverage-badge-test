@@ -2,9 +2,12 @@
   "scripts": {
     "rm-dir": "rm -rf coverage | rm -rf .nyc_output",
     "mk-dir": "mkdir coverage",
+    "pretest": "npm run rm-dir && npm run mk-dir",
+    "run:coveralls": "node ./node_modules/coveralls/bin/coveralls.js",
     "test": "nyc mocha -R spec",
-    "coverage-report": "npm run test && nyc report --reporter=text-lcov",
-    "coverage-github-action": "npm run rm-dir && npm run mk-dir && npm run test && nyc report --reporter=text-lcov > ./coverage/lcov.info"
+    "test-nyc": "mocha -R spec",
+    "coverage-report": "npm run test && nyc report --reporter=text-lcov > ./coverage/lcov.info",
+    "coverage-github-action": "npm run coverage-report | coveralls"
   },
   "devDependencies": {
     "chai": "^4.3.7",

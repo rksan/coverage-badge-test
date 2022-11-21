@@ -12,13 +12,17 @@ jobs:
         node-version: [15.x, 16.x]
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v1
         id: setup_node_id
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
+          repo-token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          GITHUB_TOKEN: ${{ github.token }}
       - if: ${{ steps.setup_node_id.outputs.cache-hit != 'true' }}
         run: npm install
       # - run: npm run precoverage-repor
