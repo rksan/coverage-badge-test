@@ -5,7 +5,7 @@
     "test": "nyc mocha -R spec",
     "precoverage-report": "npm run rm-dir",
     "coverage-report": "npm run test && nyc report --reporter=text-lcov",
-    "coverage-github-action": "npm run coverage-report | coveralls"
+    "coverage-github-action": "npm run coverage-report"
   },
   "devDependencies": {
     "chai": "^4.3.7",
