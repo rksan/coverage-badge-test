@@ -13,7 +13,7 @@ jobs:
 
     steps:
       - run: npm install
-      - run: npm cover
+      - run: npm coverage-github-action
       - name: Coveralls GitHub Action
         uses: coverallsapp/github-action@1.1.3
         with:
