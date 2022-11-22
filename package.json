@@ -1,23 +1,18 @@
 {
   "scripts": {
-    "rm-dir": "rm -rf coverage | rm -rf .nyc_output",
-    "mk-dir": "mkdir coverage",
-    "pretest": "npm run rm-dir && npm run mk-dir",
-    "run:coveralls": "node ./node_modules/coveralls/bin/coveralls.js",
+    "pretest": "rm -rf .nyc_output",
     "test": "nyc mocha -R spec",
-    "test-nyc": "mocha -R spec",
-    "coverage-report": "npm run test && nyc report --reporter=text-lcov > ./coverage/lcov.info",
-    "coverage-github-action": "npm run coverage-report | coveralls"
+    "precoverage-report": "rm -rf coverage && mkdir coverage",
+    "coverage-report": "npm run test && nyc report --reporter=text-lcov > ./coverage/lcov.info"
   },
   "devDependencies": {
     "chai": "^4.3.7",
     "coveralls": "^3.1.1",
     "mocha": "^10.1.0",
-    "mocha-lcov-reporter": "^1.3.0",
     "nyc": "^15.1.0"
   },
   "name": "coverage-badge-test",
-  "description": "",
+  "description": "Node.js + nyc + mocha + github-actions + coveralls",
   "version": "1.0.0",
   "repository": {
     "type": "git",
@@ -26,7 +21,8 @@
   "keywords": [
     "coverage",
     "badge",
-    "coveralls"
+    "coveralls",
+    "github-actions"
   ],
   "author": "rksan",
   "license": "MIT",
